@@ -1,9 +1,9 @@
-FROM maven:3.9.12-eclipse-temurin-25
+FROM maven:3.9.16-eclipse-temurin-25
 
 LABEL maintainer="KRCI Team"
 
-ENV MAKE_VERSION=4.3-4.1build2
-
+# unpinned on purpose: pick up security fixes (exact pins break rebuilds)
+# hadolint ignore=DL3008
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends make=$MAKE_VERSION && \
+    apt-get install -y --no-install-recommends make && \
     rm -rf /var/lib/apt/lists/*
